@@ -1,0 +1,97 @@
+;; Sample Luna-lang file demonstrating syntax features
+
+(ns examples.sample
+  "A comprehensive example of Luna-lang syntax"
+  (require [luna.core :as core :refer [when unless cond ->]]
+           [examples.utils :refer [helper-fn]])
+  (export factorial fibonacci process-data main))
+
+;; Simple function definition
+(def square (fn [x] (* x x)))
+
+;; Recursive function with conditional
+(def factorial
+  (fn [n]
+    (if (= n 0)
+      1
+      (* n (factorial (- n 1))))))
+
+;; Function using let bindings
+(def fibonacci
+  (fn [n]
+    (let [a 0 b 1]
+      (if (<= n 1)
+        n
+        (+ (fibonacci (- n 1)) 
+           (fibonacci (- n 2)))))))
+
+;; Using collections
+(def sample-data
+  {:users ["alice" "bob" "charlie"]
+   :scores [95 87 92]
+   :config {:debug true :port 8080}})
+
+;; Function using core library macros
+(def process-data
+  (fn [data]
+    (-> data
+        (get-map :users)
+        (first)
+        (str "-processed"))))
+
+;; Macro definition
+(defmacro debug
+  [expr]
+  `(let [result# ~expr]
+     (println "Debug:" '~expr "=>" result#)
+     result#))
+
+;; Using the macro
+(def result (debug (+ 2 3)))
+
+;; Complex conditional with cond
+(def classify-number
+  (fn [x]
+    (cond
+      (neg? x) "negative"
+      (zero? x) "zero"
+      (pos? x) "positive"
+      :else "unknown")))
+
+;; Working with vectors and maps
+(def process-scores
+  (fn [scores]
+    (let [total (reduce + scores)
+          count (count scores)
+          average (/ total count)]
+      {:total total
+       :count count  
+       :average average
+       :grades (map (fn [score]
+                      (cond
+                        (>= score 90) "A"
+                        (>= score 80) "B"
+                        (>= score 70) "C"
+                        :else "F"))
+                    scores)})))
+
+;; Main function
+(def main
+  (fn []
+    (println "Luna-lang syntax demonstration")
+    (println "Factorial of 5:" (factorial 5))
+    (println "Fibonacci of 8:" (fibonacci 8))
+    (println "Processed data:" (process-data sample-data))
+    (let [scores [95 87 92 78 85]
+          analysis (process-scores scores)]
+      (println "Score analysis:" analysis))))
+
+;; Comments and documentation
+;; This demonstrates various Luna-lang features:
+;; - Namespace declarations with imports/exports
+;; - Function definitions with fn and def
+;; - Recursive functions and local bindings
+;; - Collection literals and manipulation
+;; - Macro definitions and usage
+;; - Conditional expressions
+;; - String and number operations

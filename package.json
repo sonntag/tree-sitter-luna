@@ -1,0 +1,40 @@
+{
+  "name": "tree-sitter-luna",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for Luna-lang",
+  "main": "bindings/node",
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "luna-lang",
+    "lisp",
+    "functional-programming"
+  ],
+  "author": "Luna-lang team",
+  "license": "MIT",
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "parse": "tree-sitter parse"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.luna",
+      "file-types": [
+        "luna"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injections": [
+        "queries/injections.scm"
+      ]
+    }
+  ],
+  "files": [
+    "grammar.js",
+    "src",
+    "bindings",
+    "queries"
+  ]
+}

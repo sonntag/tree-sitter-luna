@@ -1,0 +1,69 @@
+{
+  "name": "Luna Language Support",
+  "displayName": "Luna",
+  "description": "Syntax highlighting for Luna-lang",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "luna",
+        "aliases": ["Luna", "luna"],
+        "extensions": [".luna"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "luna",
+        "scopeName": "source.luna",
+        "path": "./syntaxes/luna.tmGrammar.json",
+        "treeSitter": "./queries"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Luna",
+      "properties": {
+        "luna.repl.command": {
+          "type": "string", 
+          "default": "luna repl",
+          "description": "Command to start Luna REPL"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "luna.evalFile",
+        "title": "Evaluate File",
+        "category": "Luna"
+      },
+      {
+        "command": "luna.evalSelection", 
+        "title": "Evaluate Selection",
+        "category": "Luna"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "luna.evalFile",
+        "key": "ctrl+shift+enter",
+        "when": "editorLangId == luna"
+      },
+      {
+        "command": "luna.evalSelection",
+        "key": "ctrl+enter", 
+        "when": "editorLangId == luna && editorHasSelection"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tree-sitter build-wasm && cp tree-sitter-luna.wasm syntaxes/"
+  },
+  "dependencies": {
+    "tree-sitter-luna": "file:../"
+  }
+}

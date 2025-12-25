@@ -1,0 +1,10 @@
+prefix=/usr/local
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: tree-sitter-luna
+Description:
+URL: https://github.com/tree-sitter/tree-sitter-luna
+Version: 0.1.0
+Libs: -L${libdir} -ltree-sitter-luna
+Cflags: -I${includedir}
