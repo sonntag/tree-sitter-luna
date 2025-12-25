@@ -13,6 +13,7 @@
   "author": "Luna-lang team",
   "license": "MIT",
   "scripts": {
+    "install": "",
     "generate": "tree-sitter generate",
     "test": "tree-sitter test",
     "parse": "tree-sitter parse"
@@ -36,5 +37,9 @@
     "src",
     "bindings",
     "queries"
-  ]
+  ],
+  "dependencies": {
+    "node-addon-api": "^8.3.0",
+    "node-gyp-build": "^4.8.4"
+  }
 }
