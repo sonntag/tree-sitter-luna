@@ -118,7 +118,7 @@
                 "type": "IMMEDIATE_TOKEN",
                 "content": {
                   "type": "PATTERN",
-                  "value": "[^\"\\\\$]"
+                  "value": "[^\"\\\\$]+"
                 }
               },
               {
@@ -161,11 +161,11 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "string_interpolation"
+                "name": "string_expression"
               },
               {
                 "type": "SYMBOL",
-                "name": "string_expression"
+                "name": "string_interpolation"
               },
               {
                 "type": "IMMEDIATE_TOKEN",
@@ -184,24 +184,20 @@
       ]
     },
     "string_interpolation": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
             "type": "STRING",
-            "value": "${"
+            "value": "$"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[a-zA-Z_][a-zA-Z0-9_+\\-*/<>=!?.&#]*"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "symbol"
-        },
-        {
-          "type": "STRING",
-          "value": "}"
-        }
-      ]
+        ]
+      }
     },
     "string_expression": {
       "type": "SEQ",
@@ -214,8 +210,11 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_form"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_form"
+          }
         },
         {
           "type": "STRING",

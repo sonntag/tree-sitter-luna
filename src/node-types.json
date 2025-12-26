@@ -319,8 +319,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
           "type": "comment",
@@ -368,21 +368,6 @@
         },
         {
           "type": "vector",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "string_interpolation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "symbol",
           "named": true
         }
       ]
@@ -578,10 +563,6 @@
     "named": false
   },
   {
-    "type": "${",
-    "named": false
-  },
-  {
     "type": "'",
     "named": false
   },
@@ -629,6 +610,10 @@
   {
     "type": "r",
     "named": false
+  },
+  {
+    "type": "string_interpolation",
+    "named": true
   },
   {
     "type": "symbol",

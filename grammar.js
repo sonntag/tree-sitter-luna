@@ -36,26 +36,28 @@ module.exports = grammar({
     string: $ => seq(
       '"',
       repeat(choice(
-        token.immediate(/[^"\\$]/),
+        token.immediate(/[^"\\$]+/),
         seq('\\', choice('"', '\\', 'n', 't', 'r', '$')),
-        $.string_interpolation,
         $.string_expression,
-        token.immediate('$')  // Bare $ that's not interpolation
+        $.string_interpolation,
+        token.immediate('$')  // Bare $ that's not interpolation (e.g. $5)
       )),
       '"'
     ),
 
-    // String interpolation ${var}
-    string_interpolation: $ => seq(
-      token.immediate('${'),
-      $.symbol,
-      '}'
-    ),
+    // String interpolation $symbol (variable interpolation)
+    // Must match $ immediately followed by a symbol-starting character
+    string_interpolation: $ => token.immediate(seq(
+      '$',
+      /[a-zA-Z_][a-zA-Z0-9_+\-*/<>=!?.&#]*/
+    )),
 
     // String expression interpolation $(expr)
+    // The $( starts it, then we need to parse content and closing )
+    // Since $( consumes the opening paren, we need to parse the list contents directly
     string_expression: $ => seq(
       token.immediate('$('),
-      $._form,
+      repeat($._form),
       ')'
     ),
 
