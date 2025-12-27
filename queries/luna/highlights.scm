@@ -31,7 +31,7 @@
 
 ;; Built-in functions (common ones)
 ((symbol) @function.builtin
-  (#match? @function.builtin "^(\\+|\\-|\\*|/|=|<|>|<=|>=|not=|not|println|print|str|count|first|rest|cons|conj|get|assoc|dissoc|keys|vals|map|filter|reduce|apply|some|every\\?|concat|reverse|take|drop|nth|empty\\?)$"))
+  (#match? @function.builtin "^(\\+|\\-|\\*|/|[=<>]|[<][=]|[>][=]|not[=]|not|println|print|str|count|first|rest|cons|conj|get|assoc|dissoc|keys|vals|map|filter|reduce|apply|some|every\\?|concat|reverse|take|drop|nth|empty\\?)$"))
 
 ;; Type predicates
 ((symbol) @function.builtin
