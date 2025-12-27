@@ -25,10 +25,10 @@
         "luna"
       ],
       "highlights": [
-        "queries/highlights.scm"
+        "queries/luna/highlights.scm"
       ],
       "injections": [
-        "queries/injections.scm"
+        "queries/luna/injections.scm"
       ]
     }
   ],

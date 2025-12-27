@@ -11,10 +11,10 @@
       ],
       "injection-regex": "^luna$",
       "class-name": "TreeSitterLuna",
-      "highlights": "queries/highlights.scm",
-      "locals": "queries/locals.scm",
-      "folds": "queries/folds.scm",
-      "injections": "queries/injections.scm"
+      "highlights": "queries/luna/highlights.scm",
+      "locals": "queries/luna/locals.scm",
+      "folds": "queries/luna/folds.scm",
+      "injections": "queries/luna/injections.scm"
     }
   ],
   "metadata": {
